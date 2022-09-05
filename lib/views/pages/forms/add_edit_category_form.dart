@@ -1,3 +1,4 @@
+import 'package:admin_/controller/category_controller.dart';
 import 'package:admin_/utils/constants.dart';
 import 'package:admin_/views/components/my_button.dart';
 import 'package:admin_/views/components/my_field.dart';
@@ -9,6 +10,7 @@ class AddEditCategoryForm extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+  final CategoryController categoryController = Get.put(CategoryController());
   AddEditCategoryForm({Key? key, this.title = "Add Category"})
       : super(key: key);
 
@@ -33,7 +35,7 @@ class AddEditCategoryForm extends StatelessWidget {
                 children: [
                   MyField(
                     controller: _nameController,
-                    labelText: 'Category Add',
+                    labelText: 'Category Name',
                   ),
                   MyField(
                     controller: _descriptionController,
@@ -43,7 +45,14 @@ class AddEditCategoryForm extends StatelessWidget {
               ),
               MyButton(
                 onTap: () {
-                  Get.back();
+                  var data = {
+                    'name': _nameController.text,
+                    'description': _descriptionController.text
+                  };
+                  var isValidated = _formKey.currentState!.validate();
+                  if (isValidated) {
+                    categoryController.add(data);
+                  }
                 },
                 buttonName: 'Save',
               ),

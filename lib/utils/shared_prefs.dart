@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 //this class uses shared preference package to store and get token from API
+//also it takes less storage
 class AuthService {
   late SharedPreferences prefs;
 

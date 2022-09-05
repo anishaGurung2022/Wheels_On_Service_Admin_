@@ -8,8 +8,11 @@ import 'package:admin_/controller/authentication_controller.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(Authentication());
-  runApp(const GetMaterialApp(
-    home: Loader(),
+  runApp(GetMaterialApp(
+    theme: ThemeData(
+      primarySwatch: Colors.blue,
+    ),
+    home: const Loader(),
     debugShowCheckedModeBanner: false,
   ));
 }
