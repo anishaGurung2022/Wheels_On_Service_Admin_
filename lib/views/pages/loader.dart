@@ -30,6 +30,7 @@ class _LoaderState extends State<Loader> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(

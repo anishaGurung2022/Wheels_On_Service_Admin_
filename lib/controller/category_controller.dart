@@ -6,8 +6,31 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class CategoryController extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+    var categories = get();
+  }
+
   var loading = false.obs;
   final AuthService authService = AuthService();
+
+  //GET categories from database
+  get() async {
+    var url = Uri.parse(GET_CATEGORIES_API);
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
+      if (jsonResponse["success"]) {
+        Get.back();
+        showMessage(title: "Success", message: jsonResponse["message"]);
+      } else {
+        showMessage(
+            title: "Error", message: jsonResponse["message"], isSuccess: false);
+      }
+    }
+  }
+
   add(data) async {
     loading.value = true;
     data['token'] = await authService.getToken();

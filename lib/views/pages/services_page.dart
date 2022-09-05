@@ -20,7 +20,7 @@ class _HomePageState extends State<ServicesPage> {
         appBar: AppBar(
             title: const Text('Services'), backgroundColor: primaryColor),
         backgroundColor: backgroundColor,
-        drawer: SideDrawer(),
+        drawer: const SideDrawer(),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -37,7 +37,7 @@ class _HomePageState extends State<ServicesPage> {
                 ),
                 MyButton(
                   onTap: () {
-                    Get.to(AddEditProductForm());
+                    Get.to(const AddEditProductForm());
                   },
                   buttonName: 'Add Product',
                 ),
