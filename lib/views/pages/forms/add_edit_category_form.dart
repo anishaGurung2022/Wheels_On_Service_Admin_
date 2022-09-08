@@ -10,7 +10,7 @@ class AddEditCategoryForm extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  final CategoryController categoryController = Get.put(CategoryController());
+  final CategoryController categoryController = Get.find<CategoryController>();
   AddEditCategoryForm({Key? key, this.title = "Add Category"})
       : super(key: key);
 
@@ -43,19 +43,22 @@ class AddEditCategoryForm extends StatelessWidget {
                   ),
                 ],
               ),
-              MyButton(
-                onTap: () {
-                  var data = {
-                    'name': _nameController.text,
-                    'description': _descriptionController.text
-                  };
-                  var isValidated = _formKey.currentState!.validate();
-                  if (isValidated) {
-                    categoryController.add(data);
-                  }
-                },
-                buttonName: 'Save',
-              ),
+              Obx(
+                () => MyButton(
+                  isLoading: categoryController.loading.value,
+                  onTap: () {
+                    var data = {
+                      'name': _nameController.text,
+                      'description': _descriptionController.text
+                    };
+                    var isValidated = _formKey.currentState!.validate();
+                    if (isValidated) {
+                      categoryController.add(data);
+                    }
+                  },
+                  buttonName: 'Save',
+                ),
+              )
             ],
           ),
         ),

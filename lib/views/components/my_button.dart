@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 class MyButton extends StatelessWidget {
   final onTap;
   final String buttonName;
-  const MyButton({Key? key, this.onTap, required this.buttonName})
-      : super(key: key);
+  final bool isLoading;
+  const MyButton({
+    Key? key,
+    this.onTap,
+    required this.buttonName,
+    this.isLoading = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

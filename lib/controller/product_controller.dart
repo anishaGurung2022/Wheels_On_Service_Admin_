@@ -10,10 +10,10 @@ class ProductController extends GetxController {
   var loading = false.obs;
   final AuthService authService = AuthService();
 
-  void onInit() {
-    super.onInit();
-    var products = get();
-  }
+  // void onInit() {
+  //   super.onInit();
+  //   var products = get();
+  // }
 
   get() async {
     var url = Uri.parse(GET_PRODUCTS_API);

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:admin_/model/category_model.dart';
 import 'package:admin_/utils/api.dart';
 import 'package:admin_/utils/constants.dart';
 import 'package:admin_/utils/shared_prefs.dart';
@@ -6,13 +7,19 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class CategoryController extends GetxController {
+  var loading = false.obs;
+  var selectedCategory =
+      Category(id: "", name: "", description: "", image: "").obs;
+
+  //getting the category details by creating model
+  var categories = <Category>[].obs;
+
   @override
   void onInit() {
     super.onInit();
-    var categories = get();
+    get();
   }
 
-  var loading = false.obs;
   final AuthService authService = AuthService();
 
   //GET categories from database
@@ -22,6 +29,12 @@ class CategoryController extends GetxController {
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
       if (jsonResponse["success"]) {
+        var responseData = jsonResponse['data'];
+        for (var i = 0; i < responseData.length; i++) {
+          categories.add(Category.fromJson(responseData[i]));
+        }
+        selectedCategory.value = categories.value[0];
+        print(categories);
         Get.back();
         showMessage(title: "Success", message: jsonResponse["message"]);
       } else {

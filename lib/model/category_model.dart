@@ -1,31 +1,15 @@
 // To parse this JSON data, do
 //
-//     final welcome = welcomeFromJson(jsonString);
+//     final category = categoryFromJson(jsonString);
 
 import 'dart:convert';
 
-Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
+Category categoryFromJson(String str) => Category.fromJson(json.decode(str));
 
-String welcomeToJson(Welcome data) => json.encode(data.toJson());
+String categoryToJson(Category data) => json.encode(data.toJson());
 
-class Welcome {
-  Welcome({
-    required this.data,
-  });
-
-  List<Datum> data;
-
-  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
-      };
-}
-
-class Datum {
-  Datum({
+class Category {
+  Category({
     required this.id,
     required this.name,
     required this.description,
@@ -37,7 +21,7 @@ class Datum {
   String description;
   String image;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Category.fromJson(Map<String, dynamic> json) => Category(
         id: json["id"],
         name: json["name"],
         description: json["description"],
