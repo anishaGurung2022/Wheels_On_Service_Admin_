@@ -197,7 +197,7 @@ class _AddEditProductFormState extends State<AddEditProductForm> {
                               "name": _nameController.text,
                               "price": priceController.text,
                               "description": _descriptionController.text,
-                              "categoryID": selectedCategory['id']
+                              "categoryID": selectedCategory['id'].toString()
                             };
                             productController.add(data, pickedFile);
                           }

@@ -32,7 +32,7 @@ class ProductController extends GetxController {
 
   add(data, PickedFile? file) async {
     loading.value = true;
-    data['token'] = await authService.getToken();
+    data['token'] = (await authService.getToken())!;
     var url = Uri.parse(ADD_PRODUCT_API);
     //multipart that takes file
     var request = http.MultipartRequest('POST', url);
