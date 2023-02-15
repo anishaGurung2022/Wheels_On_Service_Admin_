@@ -26,39 +26,51 @@ class AddEditCategoryForm extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title,
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
-                      color: primaryColor)),
               Column(
                 children: [
-                  MyField(
-                    controller: _nameController,
-                    labelText: 'Category Name',
+                  Text(title,
+                      style: const TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w800,
+                          color: primaryColor)),
+                  const SizedBox(height: 40),
+                  SizedBox(
+                    width: 350,
+                    child: MyField(
+                      controller: _nameController,
+                      labelText: 'Category Name',
+                      prefixIcon: Icon(Icons.category),
+                    ),
                   ),
-                  MyField(
-                    controller: _descriptionController,
-                    labelText: 'Category Description',
+                  SizedBox(
+                    width: 350,
+                    child: MyField(
+                      controller: _descriptionController,
+                      labelText: 'Category Description',
+                      prefixIcon: Icon(Icons.description),
+                    ),
                   ),
+                  SizedBox(
+                    width: 200,
+                    child: Obx(
+                      () => MyButton(
+                        isLoading: categoryController.loading.value,
+                        onTap: () {
+                          var data = {
+                            'name': _nameController.text,
+                            'description': _descriptionController.text
+                          };
+                          var isValidated = _formKey.currentState!.validate();
+                          if (isValidated) {
+                            categoryController.add(data);
+                          }
+                        },
+                        buttonName: 'Save',
+                      ),
+                    ),
+                  )
                 ],
               ),
-              Obx(
-                () => MyButton(
-                  isLoading: categoryController.loading.value,
-                  onTap: () {
-                    var data = {
-                      'name': _nameController.text,
-                      'description': _descriptionController.text
-                    };
-                    var isValidated = _formKey.currentState!.validate();
-                    if (isValidated) {
-                      categoryController.add(data);
-                    }
-                  },
-                  buttonName: 'Save',
-                ),
-              )
             ],
           ),
         ),

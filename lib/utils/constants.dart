@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-const primaryColor = Color(0xff203E64);
+const primaryColor = Color(0xffF77931);
 const backgroundColor = Colors.white;
 
 showMessage(
@@ -13,3 +13,5 @@ showMessage(
     backgroundColor: isSuccess ? Colors.green : Colors.red,
   );
 }
+
+const lockIcon = Icon(Icons.lock);

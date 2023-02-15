@@ -2,14 +2,9 @@ import 'package:admin_/utils/constants.dart';
 import 'package:admin_/views/components/side_drawer.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class CustomersPage extends StatelessWidget {
+  const CustomersPage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +22,7 @@ class _HomePageState extends State<HomePage> {
                       color: primaryColor,
                       child: const Center(
                         child: Text(
-                          "Dashboard",
+                          "Customers",
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             fontSize: 25,

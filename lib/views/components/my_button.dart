@@ -17,11 +17,18 @@ class MyButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
-        onTap: onTap,
+        onTap: () {
+          onTap();
+        },
         child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: primaryColor,
+              boxShadow: const [
+                BoxShadow(
+                  color: Color.fromARGB(255, 176, 173, 173),
+                ),
+              ],
             ),
             width: 400,
             child: Center(

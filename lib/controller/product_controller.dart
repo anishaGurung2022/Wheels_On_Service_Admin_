@@ -15,20 +15,20 @@ class ProductController extends GetxController {
   //   var products = get();
   // }
 
-  get() async {
-    var url = Uri.parse(GET_PRODUCTS_API);
-    var response = await http.get(url);
-    if (response.statusCode == 200) {
-      var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
-      if (jsonResponse["success"]) {
-        Get.back();
-        showMessage(title: "Success", message: jsonResponse["message"]);
-      } else {
-        showMessage(
-            title: "Error", message: jsonResponse["message"], isSuccess: false);
-      }
-    }
-  }
+  // get() async {
+  //   var url = Uri.parse(GET_PRODUCTS_API);
+  //   var response = await http.get(url);
+  //   if (response.statusCode == 200) {
+  //     var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
+  //     if (jsonResponse["success"]) {
+  //       Get.back();
+  //       showMessage(title: "Success", message: jsonResponse["message"]);
+  //     } else {
+  //       showMessage(
+  //           title: "Error", message: jsonResponse["message"], isSuccess: false);
+  //     }
+  //   }
+  // }
 
   add(data, PickedFile? file) async {
     loading.value = true;

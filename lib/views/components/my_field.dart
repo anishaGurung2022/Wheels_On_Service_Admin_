@@ -1,16 +1,20 @@
+import 'package:admin_/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class MyField extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
   final String hintText;
+  final prefixIcon;
   final bool obscureText;
   final Function? myTextValidator;
+
   const MyField(
       {Key? key,
       required this.controller,
       required this.labelText,
       this.hintText = "",
+      this.prefixIcon = lockIcon,
       this.obscureText = false,
       this.myTextValidator})
       : super(key: key);
@@ -21,16 +25,15 @@ class MyField extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Material(
         elevation: 20.0,
-        shadowColor: Colors.grey[400],
         child: TextFormField(
-          cursorWidth: 20,
+          cursorWidth: 15,
           controller: controller,
           obscureText: obscureText,
           decoration: InputDecoration(
-            labelText: labelText,
-            hintText: hintText,
-            border: const OutlineInputBorder(),
-          ),
+              labelText: labelText,
+              hintText: hintText,
+              border: const OutlineInputBorder(),
+              prefixIcon: prefixIcon),
           validator: (value) {
             if (value!.isEmpty) {
               return "$labelText is required";

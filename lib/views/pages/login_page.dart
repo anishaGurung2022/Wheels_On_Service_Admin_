@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: primaryColor,
       body: SingleChildScrollView(
         child: SafeArea(
             child: Form(
@@ -25,55 +25,84 @@ class LoginPage extends StatelessWidget {
                 child: Center(
                   child: Column(
                     children: [
-                      SizedBox(
-                          height: 250,
-                          width: 300,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.rectangle,
-                                image: DecorationImage(
-                                    image: AssetImage('assets/images/logo.jpg'),
-                                    fit: BoxFit.fill)),
-                          )),
-                      const Text("Login",
-                          style: TextStyle(
-                              fontSize: 23,
-                              fontWeight: FontWeight.w800,
-                              color: primaryColor)),
-                      const SizedBox(height: 20),
-                      MyField(
-                        controller: emailController,
-                        labelText: 'Email',
-                        myTextValidator: (value) {
-                          if (!value.toString().contains("@")) {
-                            return "Email is not valid";
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      MyField(
-                        controller: passwordController,
-                        labelText: 'Password',
-                        obscureText: true,
-                        myTextValidator: (value) {
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      MyButton(
-                        onTap: () {
-                          var isFormValid = formKey.currentState!.validate();
-                          if (isFormValid) {
-                            var data = {
-                              "email": emailController.text,
-                              "password": passwordController.text
-                            };
-                            authentication.login(data);
-                          }
-                        },
-                        buttonName: "Login",
+                      const SizedBox(height: 40),
+                      Container(
+                        height: 500,
+                        width: 900,
+                        color: backgroundColor,
+                        child: Row(
+                          children: [
+                            SizedBox(
+                                height: 400,
+                                width: 450,
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.rectangle,
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/images/logo.png'),
+                                          fit: BoxFit.fill)),
+                                )),
+                            Container(
+                              color: const Color.fromARGB(255, 233, 238, 241),
+                              width: 450,
+                              child: Column(children: [
+                                const SizedBox(
+                                  height: 140,
+                                ),
+                                const Text(
+                                  'Welcome!',
+                                  style: TextStyle(
+                                    fontFamily: 'Roboto',
+                                    fontSize: 25,
+                                    color: Color(0xff1c1919),
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                                MyField(
+                                  controller: emailController,
+                                  labelText: 'Email',
+                                  prefixIcon: const Icon(Icons.email),
+                                  myTextValidator: (value) {
+                                    if (!value.toString().contains("@")) {
+                                      return "Email is not valid";
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                SizedBox(
+                                  child: MyField(
+                                    controller: passwordController,
+                                    labelText: 'Password',
+                                    obscureText: true,
+                                    myTextValidator: (value) {
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 60,
+                                  width: 200,
+                                  child: MyButton(
+                                    buttonName: 'Login',
+                                    onTap: () {
+                                      var isFormValid =
+                                          formKey.currentState!.validate();
+                                      if (isFormValid) {
+                                        var data = {
+                                          "email": emailController.text,
+                                          "password": passwordController.text
+                                        };
+                                        authentication.login(data);
+                                      }
+                                    },
+                                  ),
+                                )
+                              ]),
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),

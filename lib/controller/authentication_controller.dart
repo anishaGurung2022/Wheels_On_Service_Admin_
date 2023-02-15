@@ -35,7 +35,16 @@ class Authentication extends GetxController {
   logout() async {
     var url = Uri.parse(LOGOUT_API);
     var token_ = await authService.getToken();
-    var response = await http.post(url, body: {"token": token_});
+    var response = await http.post(url, body: {
+      "token": token_
+    }, headers: {
+      "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+      "Access-Control-Allow-Credentials":
+          'true', // Required for cookies, authorization headers with HTTPS
+      "Access-Control-Allow-Headers":
+          "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+      "Access-Control-Allow-Methods": "POST, OPTIONS"
+    });
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
       if (jsonResponse["success"]) {

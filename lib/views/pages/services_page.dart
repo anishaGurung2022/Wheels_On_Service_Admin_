@@ -1,49 +1,117 @@
+import 'package:admin_/controller/category_controller.dart';
+import 'package:admin_/model/category_model.dart';
 import 'package:admin_/utils/constants.dart';
 import 'package:admin_/views/components/my_button.dart';
 import 'package:admin_/views/components/side_drawer.dart';
 import 'package:admin_/views/pages/forms/add_edit_category_form.dart';
-import 'package:admin_/views/pages/forms/add_edit_product_form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:admin_/utils/api.dart';
+import 'package:http/http.dart';
+//import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+
+import 'forms/add_edit_service_form.dart';
 
 class ServicesPage extends StatefulWidget {
-  const ServicesPage({Key? key}) : super(key: key);
+  ServicesPage({Key? key}) : super(key: key);
 
   @override
   State<ServicesPage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<ServicesPage> {
+  final CategoryController categoryController = Get.find<CategoryController>();
+  late List<Category> _categories;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text('Services'), backgroundColor: primaryColor),
         backgroundColor: backgroundColor,
-        drawer: const SideDrawer(),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                MyButton(
-                  onTap: () {
-                    Get.bottomSheet(AddEditCategoryForm());
-                  },
-                  buttonName: 'Add Category',
+          child: Row(
+            children: [
+              const SideDrawer(),
+              Expanded(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 1000,
+                      color: primaryColor,
+                      child: const Center(
+                        child: Text(
+                          "Services",
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontSize: 25,
+                            color: Color.fromARGB(255, 251, 251, 251),
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 200,
+                          child: MyButton(
+                            onTap: () {
+                              openCategoryForm();
+                            },
+                            buttonName: 'Add Category',
+                          ),
+                        ),
+                        SizedBox(
+                          width: 200,
+                          child: MyButton(
+                            onTap: () {
+                              openServiceForm();
+                            },
+                            buttonName: 'Add Service',
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    //   FutureBuilder<Object>(
+                    //       future: get(Uri.parse(GET_CATEGORIES_API)),
+                    //       builder: (context, data) {
+                    //         return data.hasData
+                    //             ? SfDataGrid(
+                    //                 source: CategoryDataSource(_categories),
+                    //                 columnWidthMode: ColumnWidthMode.fill,
+                    //                 columns: [],
+                    //               )
+                    //             : Center(
+                    //                 child: CircularProgressIndicator(
+                    //                 strokeWidth: 2,
+                    //                 value: 0.8,
+                    //               ));
+                    //       })
+                  ],
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                MyButton(
-                  onTap: () {
-                    Get.to(const AddEditProductForm());
-                  },
-                  buttonName: 'Add Product',
-                ),
-              ],
-            ),
+              )
+            ],
           ),
         ));
   }
+
+  void openCategoryForm() => showDialog(
+      context: context,
+      builder: ((context) => AlertDialog(
+            //title: Text("Add Category"),
+            content: AddEditCategoryForm(),
+          )));
+
+  void openServiceForm() => showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          insetPadding: const EdgeInsets.symmetric(horizontal: 100),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          child: const AddEditServiceForm(), //this right here
+        );
+      });
 }

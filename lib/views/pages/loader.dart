@@ -50,7 +50,7 @@ class _LoaderState extends State<Loader> {
                         color: Colors.white,
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                            image: AssetImage('assets/images/logo.jpg'),
+                            image: AssetImage('assets/images/logo.png'),
                             fit: BoxFit.fill)),
                   )),
             )
