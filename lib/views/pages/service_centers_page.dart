@@ -1,4 +1,5 @@
 import 'package:admin_/utils/constants.dart';
+import 'package:admin_/views/components/DataTables/service_centers_table.dart';
 import 'package:admin_/views/components/side_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +32,9 @@ class ServiceCentresPage extends StatelessWidget {
                           ),
                         ),
                       ),
+                    ),
+                    Column(
+                      children: [ServiceCentersTable()],
                     ),
                   ],
                 ),

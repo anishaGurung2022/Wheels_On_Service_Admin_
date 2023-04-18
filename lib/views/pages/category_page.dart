@@ -62,12 +62,12 @@ class _CategoriesState extends State<Categories> {
                 height: 30,
               ),
 
-              MyButton(
-                onTap: () {
-                  Get.bottomSheet(AddEditServiceForm());
-                },
-                buttonName: 'Add Service',
-              ),
+              // MyButton(
+              //   onTap: () {
+              //     Get.bottomSheet(AddEditServiceForm());
+              //   },
+              //   buttonName: 'Add Service',
+              // ),
             ],
           ),
         ),

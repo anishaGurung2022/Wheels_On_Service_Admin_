@@ -11,7 +11,14 @@ class Authentication extends GetxController {
 
   login(data) async {
     var url = Uri.parse(LOGIN_API);
-    var response = await http.post(url, body: data);
+    var response = await http.post(url, body: data, headers: {
+      "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+      "Access-Control-Allow-Credentials":
+          'true', // Required for cookies, authorization headers with HTTPS
+      "Access-Control-Allow-Headers":
+          "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS"
+    });
     if (response.statusCode == 200) {
       // Converting json response into Map (list with key and its value)
       var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
@@ -43,7 +50,7 @@ class Authentication extends GetxController {
           'true', // Required for cookies, authorization headers with HTTPS
       "Access-Control-Allow-Headers":
           "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
-      "Access-Control-Allow-Methods": "POST, OPTIONS"
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS"
     });
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;

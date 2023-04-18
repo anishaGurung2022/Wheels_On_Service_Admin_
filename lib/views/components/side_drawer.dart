@@ -1,8 +1,6 @@
 import 'package:admin_/controller/authentication_controller.dart';
 import 'package:admin_/utils/constants.dart';
 import 'package:admin_/utils/shared_prefs.dart';
-import 'package:admin_/views/pages/add_services_page.dart';
-import 'package:admin_/views/pages/category_page.dart';
 import 'package:admin_/views/pages/customers_page.dart';
 import 'package:admin_/views/pages/home_page.dart';
 import 'package:admin_/views/pages/service_centers_page.dart';
@@ -58,7 +56,7 @@ class _SideDrawerState extends State<SideDrawer> {
               style:
                   TextStyle(fontWeight: FontWeight.w900, fontFamily: 'Roboto'),
             ),
-            leading: Icon(Icons.car_repair_sharp), //add icon
+            leading: const Icon(Icons.car_repair_sharp), //add icon
             iconColor: primaryColor,
             onTap: (() => Get.to(ServicesPage())),
           ),
@@ -95,37 +93,3 @@ class _SideDrawerState extends State<SideDrawer> {
     await authentication.logout();
   }
 }
-
-
-      // SizedBox(
-          //   height: 150,
-          //   width: 150,
-          //   child: DrawerHeader(
-          //       child: Row(
-          //     children: [
-          //       Image.asset("assets/images/logo.png"),
-          //       const Text(
-          //         'WheelsOnService',
-          //         style: TextStyle(
-          //           fontFamily: 'Roboto',
-          //           fontSize: 15,
-          //           color: Color(0xff1c1919),
-          //           fontWeight: FontWeight.w900,
-          //         ),
-          //       )
-          //     ],
-          //   )),
-          // ),
-
- //childrenPadding: const EdgeInsets.only(left: 30), //children padding
-            // children: [
-            //   ListTile(
-            //       title: const Text("Categories"),
-            //       onTap: () => Get.to(const Categories())),
-            //   ListTile(
-            //       title: const Text("Add Services"),
-            //       onTap: () => Get.to(const AddServicesPage())),
-            //   ListTile(
-            //       title: const Text("Browse Services"),
-            //       onTap: () => Get.to(const ServicesPage())),
-            // ],

@@ -1,13 +1,13 @@
 import 'package:admin_/controller/category_controller.dart';
 import 'package:admin_/model/category_model.dart';
+import 'package:admin_/model/services_model.dart';
 import 'package:admin_/utils/constants.dart';
 import 'package:admin_/views/components/my_button.dart';
+import 'package:admin_/views/components/DataTables/services_table.dart';
 import 'package:admin_/views/components/side_drawer.dart';
 import 'package:admin_/views/pages/forms/add_edit_category_form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:admin_/utils/api.dart';
-import 'package:http/http.dart';
 //import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 import 'forms/add_edit_service_form.dart';
@@ -50,6 +50,9 @@ class _HomePageState extends State<ServicesPage> {
                         ),
                       ),
                     ),
+                    Column(
+                      children: [ServicesTable()],
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -62,33 +65,17 @@ class _HomePageState extends State<ServicesPage> {
                             buttonName: 'Add Category',
                           ),
                         ),
-                        SizedBox(
-                          width: 200,
-                          child: MyButton(
-                            onTap: () {
-                              openServiceForm();
-                            },
-                            buttonName: 'Add Service',
-                          ),
-                        ),
+                        // SizedBox(
+                        //   width: 200,
+                        //   child: MyButton(
+                        //     onTap: () {
+                        //       openServiceForm();
+                        //     },
+                        //     buttonName: 'Add Service',
+                        //   ),
+                        // ),
                       ],
                     ),
-
-                    //   FutureBuilder<Object>(
-                    //       future: get(Uri.parse(GET_CATEGORIES_API)),
-                    //       builder: (context, data) {
-                    //         return data.hasData
-                    //             ? SfDataGrid(
-                    //                 source: CategoryDataSource(_categories),
-                    //                 columnWidthMode: ColumnWidthMode.fill,
-                    //                 columns: [],
-                    //               )
-                    //             : Center(
-                    //                 child: CircularProgressIndicator(
-                    //                 strokeWidth: 2,
-                    //                 value: 0.8,
-                    //               ));
-                    //       })
                   ],
                 ),
               )
@@ -104,14 +91,14 @@ class _HomePageState extends State<ServicesPage> {
             content: AddEditCategoryForm(),
           )));
 
-  void openServiceForm() => showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          insetPadding: const EdgeInsets.symmetric(horizontal: 100),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          child: const AddEditServiceForm(), //this right here
-        );
-      });
+  // void openServiceForm() => showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return Dialog(
+  //         insetPadding: const EdgeInsets.symmetric(horizontal: 100),
+  //         shape:
+  //             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+  //         child: const AddEditServiceForm(), //this right here
+  //       );
+  //     });
 }

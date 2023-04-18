@@ -1,4 +1,5 @@
 import 'package:admin_/utils/constants.dart';
+import 'package:admin_/views/components/DataTables/customers_table.dart';
 import 'package:admin_/views/components/side_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -32,6 +33,7 @@ class CustomersPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    CustomersTable()
                   ],
                 ),
               )

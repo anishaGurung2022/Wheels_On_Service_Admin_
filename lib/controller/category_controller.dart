@@ -25,7 +25,14 @@ class CategoryController extends GetxController {
   //GET categories from database
   get() async {
     var url = Uri.parse(GET_CATEGORIES_API);
-    var response = await http.get(url);
+    var response = await http.get(url, headers: {
+      "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+      "Access-Control-Allow-Credentials":
+          'true', // Required for cookies, authorization headers with HTTPS
+      "Access-Control-Allow-Headers":
+          "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS"
+    });
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body); //as Map<String, dynamic>;
       if (jsonResponse["success"]) {
@@ -50,7 +57,14 @@ class CategoryController extends GetxController {
     print(data['token']);
     var url = Uri.parse(ADD_CATEGORY_API);
     await Future.delayed(const Duration(seconds: 3));
-    var response = await http.post(url, body: data);
+    var response = await http.post(url, body: data, headers: {
+      "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+      "Access-Control-Allow-Credentials":
+          'true', // Required for cookies, authorization headers with HTTPS
+      "Access-Control-Allow-Headers":
+          "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS"
+    });
     loading.value = false;
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
