@@ -2,6 +2,7 @@ import 'package:admin_/controller/category_controller.dart';
 import 'package:admin_/controller/customer_controller.dart';
 import 'package:admin_/controller/service_center_controller.dart';
 import 'package:admin_/controller/service_controller.dart';
+import 'package:admin_/views/pages/home_page.dart';
 import 'package:admin_/views/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

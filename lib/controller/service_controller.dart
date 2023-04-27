@@ -9,6 +9,7 @@ import '../utils/api.dart';
 class ServiceController extends GetxController {
   var loading = false.obs;
   var services = <Services>[].obs;
+  var servicesCount = "".obs;
   final AuthService authService = AuthService();
 
   @override
@@ -32,11 +33,12 @@ class ServiceController extends GetxController {
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
       if (jsonResponse["success"]) {
+        servicesCount.value = jsonResponse["count"].toString();
         var responseData = jsonResponse['data'];
         for (var i = 0; i < responseData.length; i++) {
           services.add(Services.fromJson(responseData[i]));
         }
-        showMessage(title: "Success", message: jsonResponse["message"]);
+        //showMessage(title: "Success", message: jsonResponse["message"]);
       } else {
         showMessage(
             title: "Error", message: jsonResponse["message"], isSuccess: false);

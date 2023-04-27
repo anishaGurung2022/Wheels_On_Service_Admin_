@@ -9,6 +9,7 @@ import '../utils/api.dart';
 class CustomerController extends GetxController {
   var loading = false.obs;
   var customers = <Customers>[].obs;
+  var customerCount = "".obs;
   final AuthService authService = AuthService();
 
   @override
@@ -32,11 +33,12 @@ class CustomerController extends GetxController {
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
       if (jsonResponse["success"]) {
+        customerCount.value = jsonResponse["count"].toString();
         var responseData = jsonResponse['data'];
         for (var i = 0; i < responseData.length; i++) {
           customers.add(Customers.fromJson(responseData[i]));
         }
-        showMessage(title: "Success", message: jsonResponse["message"]);
+        //showMessage(title: "Success", message: jsonResponse["message"]);
       } else {
         showMessage(
             title: "Error", message: jsonResponse["message"], isSuccess: false);

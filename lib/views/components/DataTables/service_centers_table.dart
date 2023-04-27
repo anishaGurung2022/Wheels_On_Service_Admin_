@@ -9,10 +9,10 @@ class ServiceCentersTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return buildServicesDataTable();
+    return buildServiceCentersDataTable();
   }
 
-  Widget buildServicesDataTable() {
+  Widget buildServiceCentersDataTable() {
     final columns = [
       'S.N',
       'Name',
@@ -20,7 +20,6 @@ class ServiceCentersTable extends StatelessWidget {
       'Cities',
       'Email',
       'User Name',
-      'Image'
     ];
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -36,8 +35,7 @@ class ServiceCentersTable extends StatelessWidget {
                           DataCell(Text(serviceCenter.phone)),
                           DataCell(Text(serviceCenter.cities)),
                           DataCell(Text(serviceCenter.email)),
-                          DataCell(Text(serviceCenter.userName)),
-                          DataCell(Text(serviceCenter.image)),
+                          DataCell(Text(serviceCenter.userName))
                         ],
                       ))
                   .toList()),

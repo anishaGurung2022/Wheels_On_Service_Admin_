@@ -19,7 +19,6 @@ class ServicesTable extends StatelessWidget {
       'Price',
       'Category',
       'Service Center Name',
-      'image'
     ];
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -32,11 +31,15 @@ class ServicesTable extends StatelessWidget {
                         cells: [
                           DataCell(Text(service.id.toString())),
                           DataCell(Text(service.name)),
-                          DataCell(Text(service.description)),
+                          DataCell(SizedBox(
+                            height:
+                                60, // Set the height to limit the text to a specific height
+                            child: Text(service.description,
+                                style: const TextStyle(fontSize: 14)),
+                          )),
                           DataCell(Text(service.price.toString())),
                           DataCell(Text(service.category)),
                           DataCell(Text(service.serviceCenter)),
-                          DataCell(Text(service.image)),
                         ],
                       ))
                   .toList()),

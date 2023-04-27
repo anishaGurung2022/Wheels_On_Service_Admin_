@@ -70,7 +70,7 @@ class CategoryController extends GetxController {
       var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
       if (jsonResponse["success"]) {
         Get.back();
-        showMessage(title: "Success", message: jsonResponse["message"]);
+        //showMessage(title: "Success", message: jsonResponse["message"]);
       } else {
         showMessage(
             title: "Error", message: jsonResponse["message"], isSuccess: false);

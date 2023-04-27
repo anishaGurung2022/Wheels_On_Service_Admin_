@@ -1,8 +1,10 @@
 import 'package:admin_/controller/authentication_controller.dart';
+import 'package:admin_/controller/booking_controller.dart';
 import 'package:admin_/utils/constants.dart';
 import 'package:admin_/utils/shared_prefs.dart';
 import 'package:admin_/views/components/my_button.dart';
 import 'package:admin_/views/components/my_field.dart';
+import 'package:admin_/views/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,13 +13,14 @@ class LoginPage extends StatelessWidget {
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final authentication = Get.find<Authentication>();
+  BookingController bookingController = Get.put(BookingController());
   final AuthService authService = AuthService();
   LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryColor,
+      backgroundColor: Colors.grey.shade300,
       body: SingleChildScrollView(
         child: SafeArea(
             child: Form(

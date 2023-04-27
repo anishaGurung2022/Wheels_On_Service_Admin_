@@ -14,7 +14,7 @@ class AddEditCategoryForm extends StatelessWidget {
   AddEditCategoryForm({Key? key, this.title = "Add Category"})
       : super(key: key);
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
@@ -23,55 +23,57 @@ class AddEditCategoryForm extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Form(
           key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  Text(title,
-                      style: const TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w800,
-                          color: primaryColor)),
-                  const SizedBox(height: 40),
-                  SizedBox(
-                    width: 350,
-                    child: MyField(
-                      controller: _nameController,
-                      labelText: 'Category Name',
-                      prefixIcon: Icon(Icons.category),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 350,
-                    child: MyField(
-                      controller: _descriptionController,
-                      labelText: 'Category Description',
-                      prefixIcon: Icon(Icons.description),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 200,
-                    child: Obx(
-                      () => MyButton(
-                        isLoading: categoryController.loading.value,
-                        onTap: () {
-                          var data = {
-                            'name': _nameController.text,
-                            'description': _descriptionController.text
-                          };
-                          var isValidated = _formKey.currentState!.validate();
-                          if (isValidated) {
-                            categoryController.add(data);
-                          }
-                        },
-                        buttonName: 'Save',
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Text(title,
+                        style: const TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w800,
+                            color: primaryColor)),
+                    const SizedBox(height: 40),
+                    SizedBox(
+                      width: 350,
+                      child: MyField(
+                        controller: _nameController,
+                        labelText: 'Category Name',
+                        prefixIcon: Icon(Icons.category),
                       ),
                     ),
-                  )
-                ],
-              ),
-            ],
+                    SizedBox(
+                      width: 350,
+                      child: MyField(
+                        controller: _descriptionController,
+                        labelText: 'Category Description',
+                        prefixIcon: Icon(Icons.description),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 200,
+                      child: Obx(
+                        () => MyButton(
+                          isLoading: categoryController.loading.value,
+                          onTap: () {
+                            var data = {
+                              'name': _nameController.text,
+                              'description': _descriptionController.text
+                            };
+                            var isValidated = _formKey.currentState!.validate();
+                            if (isValidated) {
+                              categoryController.add(data);
+                            }
+                          },
+                          buttonName: 'Save',
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

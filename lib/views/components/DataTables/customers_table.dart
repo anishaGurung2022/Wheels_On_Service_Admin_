@@ -8,10 +8,10 @@ class CustomersTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return buildServicesDataTable();
+    return buildCustomersDataTable();
   }
 
-  Widget buildServicesDataTable() {
+  Widget buildCustomersDataTable() {
     final columns = [
       'S.N',
       'Name',
@@ -33,10 +33,8 @@ class CustomersTable extends StatelessWidget {
                           DataCell(Text(customer.name)),
                           DataCell(Text(customer.phone)),
                           DataCell(Text(customer.address)),
-                          DataCell(Text(customer.email)), // <-- added this
+                          DataCell(Text(customer.email)),
                           DataCell(Text(customer.userName)),
-                          //DataCell(Text(customer.password)),
-                          //DataCell(Text(customer.isAdmin.toString())) // <-- added this
                         ],
                       ))
                   .toList()),

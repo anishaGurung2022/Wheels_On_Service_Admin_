@@ -1,4 +1,5 @@
 import 'package:admin_/controller/authentication_controller.dart';
+import 'package:admin_/controller/booking_controller.dart';
 import 'package:admin_/utils/constants.dart';
 import 'package:admin_/utils/shared_prefs.dart';
 import 'package:admin_/views/pages/customers_page.dart';
@@ -18,6 +19,7 @@ class SideDrawer extends StatefulWidget {
 class _SideDrawerState extends State<SideDrawer> {
   final authService = AuthService();
   final authentication = Get.find<Authentication>();
+  BookingController bookingController = Get.put(BookingController());
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -48,7 +50,7 @@ class _SideDrawerState extends State<SideDrawer> {
               style:
                   TextStyle(fontWeight: FontWeight.w900, fontFamily: 'Roboto'),
             ),
-            onTap: () => Get.to(const HomePage()),
+            onTap: () => Get.to(HomePage()),
           ),
           ListTile(
             title: const Text(
